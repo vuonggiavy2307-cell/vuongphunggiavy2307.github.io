@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vương Phùng Gia Vỹ - Customer Service Logistics Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js"></script>
+    
+    <style>
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #6366f1;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animation-delay-200 { animation-delay: 200ms; }
+        .animation-delay-400 { animation-delay: 400ms; }
+        .animation-delay-600 { animation-delay: 600ms; }
+
+        .badge-container {
+            touch-action: none;
+            user-select: none;
+            perspective: 1200px;
+        }
+        .badge-card {
+            cursor: grab;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+        }
+        .badge-card:active {
+            cursor: grabbing;
+        }
+
+        /* HỆ THỐNG BACKGROUND PATTERN CHUYÊN NGHIỆP TOÀN TRANG */
+        .bg-grid-pattern {
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+        .bg-grid-pattern-dark {
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+        }
+
+        /* Hiệu ứng mờ dần cho Welcome Loader */
+        .fade-out {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Hiệu ứng con trỏ nhấp nháy cho text running */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+            color: #818cf8;
+            margin-left: 2px;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white overflow-x-hidden">
+
+    <!-- PRELOADER: WELCOME SCREEN (Hiển thị khi bắt đầu load trang có hiệu ứng chạy chữ) -->
+    <div id="welcome-loader" class="fixed inset-0 bg-slate-950 z-[9999] flex flex-col items-center justify-center transition-opacity duration-700">
+        <div class="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none"></div>
+        <div class="absolute w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="relative z-10 text-center space-y-6 px-4">
+            <h1 class="text-2xl md:text-5xl font-black tracking-widest bg-gradient-to-r from-indigo-400 via-purple-400 to-violet-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(99,102,241,0.3)] h-12 md:h-16 typing-cursor flex items-center justify-center" id="welcome-typing-text"></h1>
+            <p class="text-slate-400 text-xs md:text-sm tracking-wider font-medium uppercase opacity-0 animate-fade-in-up animation-delay-400">
+                Vương Phùng Gia Vỹ &bull; Customer Service Logistics
+            </p>
+            <div class="flex justify-center pt-4 opacity-0 animate-fade-in-up animation-delay-600">
+                <div class="w-10 h-10 border-2 border-indigo-500/20 border-t-indigo-400 rounded-full animate-spin"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Navbar Section -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 bg-slate-950/80 backdrop-blur-md border-b border-slate-900 z-50 transition-all duration-300 py-4">
+        <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
+            <a href="#" class="text-xl font-bold bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent hover:scale-105 transition transform duration-300">
+                Vương Phùng Gia Vỹ
+            </a>
+            <div class="hidden md:flex space-x-8 font-medium text-slate-300">
+                <a href="#about" class="nav-link hover:text-indigo-400 transition duration-300">Giới thiệu</a>
+                <a href="#skills" class="nav-link hover:text-indigo-400 transition duration-300">Kỹ năng</a>
+                <a href="#projects" class="nav-link hover:text-indigo-400 transition duration-300">Dự án & Nghiên cứu</a>
+                <a href="#contact" class="nav-link hover:text-indigo-400 transition duration-300">Liên hệ</a>
+            </div>
+            <a href="#contact" class="bg-indigo-600 hover:bg-indigo-50 text-white px-5 py-2 rounded-xl text-sm font-medium shadow-lg shadow-indigo-950/40 hover:-translate-y-0.5 transition transform duration-300">
+                Tuyển dụng tôi
+            </a>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
+    <section class="relative pt-32 pb-16 md:pt-40 md:pb-24 px-4 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-900 min-h-[95vh] flex items-center overflow-hidden border-b border-slate-900">
+        <div class="absolute inset-0 bg-grid-pattern opacity-100 pointer-events-none"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-violet-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 w-full relative z-10">
+            <div class="flex-1 space-y-6 text-center md:text-left">
+                <div class="inline-flex items-center gap-2 bg-indigo-950/60 border border-indigo-800/50 font-medium text-indigo-300 px-4 py-1.5 rounded-full text-sm animate-fade-in-up">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Sẵn sàng nhận việc / Thực tập CS Logistics
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-tight animate-fade-in-up animation-delay-200">
+                    Xin chào, tôi là <br class="hidden md:block">
+                    <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-violet-400 bg-clip-text text-transparent">Vương Phùng Gia Vỹ</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed h-16 md:h-auto animate-fade-in-up animation-delay-400">
+                    Sinh viên ngành <strong>Công nghệ Thông tin</strong> tại UMT. Định hướng phát triển sự nghiệp chuyên sâu tại vị trí: <br class="md:hidden">
+                    <span id="hero-typing-text" class="text-indigo-400 font-bold border-b-2 border-indigo-900/60 pb-0.5 typing-cursor"></span>
+                </p>
+
+                <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2 animate-fade-in-up animation-delay-600">
+                    <a href="#projects" class="group bg-white hover:bg-indigo-50 text-slate-900 hover:text-indigo-600 border border-white hover:border-indigo-200 px-6 py-3.5 rounded-xl font-medium shadow-xl hover:-translate-y-1 transition transform duration-300 flex items-center gap-2">
+                        Xem dự án nghiên cứu 
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition transform"></i>
+                    </a>
+                    <a href="#contact" class="border border-slate-700 bg-slate-900/40 backdrop-blur-xs text-slate-300 hover:text-white hover:bg-slate-800 hover:border-slate-500 px-6 py-3.5 rounded-xl font-medium hover:-translate-y-1 transition transform duration-300 flex items-center gap-2">
+                        Liên hệ ngay
+                    </a>
+                </div>
+            </div>
+
+            <!-- Khung chứa thẻ đeo (Cải tiến SVG để ghim hẳn lên viền trên màn hình) -->
+            <div class="w-80 h-[520px] relative flex-shrink-0 badge-container flex flex-col items-center">
+                <!-- SVG Sợi dây mở rộng lên trên - Hộp tọa độ xử lý ghim ngoài khung nhìn -->
+                <svg class="absolute w-[800px] h-[1000px] pointer-events-none z-10" style="top: -600px; left: 50%; transform: translateX(-50%);" id="badge-string-svg">
+                    <!-- Ghim tại x=400, y=0 (bên trên màn hình), thả dây xuống x=400, y=700 -->
+                    <path id="badge-string" d="M 400 0 Q 400 650 400 700" stroke="#6366f1" stroke-width="3" stroke-dasharray="4,4" fill="none" />
+                </svg>
+
+                <div id="badge-clip" class="absolute top-[90px] w-8 h-4 bg-slate-500 rounded-t-md border border-slate-600 z-10 shadow-md pointer-events-none">
+                    <div class="w-4 h-1.5 bg-slate-900 rounded-full mx-auto mt-1"></div>
+                </div>
+
+                <div id="interactive-badge" class="badge-card absolute top-[104px] w-72 h-96 bg-white rounded-2xl border border-slate-200 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] z-20 flex flex-col p-5 text-center select-none bg-gradient-to-b from-white to-slate-50 hover:shadow-[0_30px_70px_-10px_rgba(99,102,241,0.25)] transition-shadow duration-300">
+                    <div class="w-full h-3 bg-gradient-to-r from-indigo-600 to-violet-600 rounded-full mb-4"></div>
+                    
+                    <div class="w-full flex-1 rounded-xl overflow-hidden border-2 border-slate-200 shadow-inner bg-slate-100 relative group">
+                        <img src="1783530125103_862883616333644972_6664157184788730158_939eafa1bc64a33ae229f16f7eae282a.jpg" alt="Vương Phùng Gia Vỹ" class="w-full h-full object-cover object-top pointer-events-none" />
+                        <div class="absolute bottom-0 inset-x-0 bg-slate-900/70 backdrop-blur-xs py-1.5 text-[11px] text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                            Kéo mạnh và thả ra để thấy độ đung đưa vật lý!
+                        </div>
+                    </div>
+
+                    <div class="mt-4 space-y-0.5">
+                        <h3 class="font-extrabold text-slate-800 text-base tracking-wide">VƯƠNG PHÙNG GIA VỸ</h3>
+                        <p class="text-[11px] font-bold text-indigo-600 tracking-wider">CUSTOMER SERVICE LOGISTICS</p>
+                        <div class="pt-2 flex justify-center">
+                            <div class="h-5 w-44 bg-[url('https://upload.wikimedia.org/wikipedia/commons/8/84/Ean13.svg')] bg-repeat-x opacity-60"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. ABOUT SECTION -->
+    <section id="about" class="relative py-24 bg-slate-50 text-slate-800 border-b border-slate-200 px-4 scroll-mt-16 overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern-dark opacity-60 pointer-events-none"></div>
+        <div class="max-w-5xl mx-auto space-y-16 relative z-10">
+            <div class="text-center space-y-2">
+                <h2 class="text-3xl font-bold text-slate-900">Về Bản Thân & Hành Trình</h2>
+                <div class="w-12 h-1 bg-indigo-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center max-w-5xl mx-auto">
+                <div class="md:col-span-7 bg-white border border-slate-200/80 p-8 rounded-2xl shadow-md hover:shadow-xl hover:border-slate-300 transition duration-300 order-2 md:order-1">
+                    <div class="space-y-4 text-slate-600 leading-relaxed text-base text-left">
+                        <p>
+                            Là sinh viên chuyên ngành Công nghệ thông tin sở hữu niềm đam mê sâu sắc với chuỗi cung ứng, tôi định vị bản thân là một 
+                            <strong class="text-indigo-600 font-semibold">Chuyên viên Dịch vụ Khách hàng (Customer Service Logistics) thế hệ mới</strong>. 
+                            Điểm khác biệt của tôi nằm ở sự giao thoa giữa tư duy hệ thống, khả năng khai thác dữ liệu từ nền tảng CNTT và năng lực giao tiếp hướng tới khách hàng (Customer-centric).
+                        </p>
+                        <p>
+                            Trải qua hành trình gắn bó và trực tiếp tham gia điều phối tại CLB UMC Marketing, tôi đã rèn luyện được tư duy nhạy bén trong việc quản trị nhân sự, tổ chức quy trình và xử lý khủng hoảng thông tin dưới áp lực cao. Tôi không chỉ hướng tới việc giải quyết các sự vụ một cách khéo léo, mà còn đặt mục tiêu số hóa để tạo ra giá trị bền vững cho doanh nghiệp.
+                        </p>
+                    </div>
+                </div>
+                <div class="md:col-span-5 order-1 md:order-2 flex justify-center">
+                    <div class="w-full max-w-[280px] md:max-w-full aspect-[3/4] rounded-2xl overflow-hidden border-4 border-white shadow-xl hover:scale-[1.03] hover:shadow-2xl transition duration-300 bg-slate-200 group">
+                        <img src="meet_and_connect.jpg" alt="Vương Phùng Gia Vỹ - Meet and Connect" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch pt-4">
+                <div class="md:col-span-5 flex items-center justify-center">
+                    <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border-4 border-white shadow-xl hover:scale-[1.03] hover:shadow-2xl transition duration-300 bg-slate-200 group">
+                        <img src="digiport_logistics.jpg" alt="Digiport Logistics 2025 Team" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                </div>
+
+                <div class="md:col-span-7 flex flex-col gap-6 justify-between">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-indigo-300 transition duration-300 group">
+                        <div class="flex items-center gap-3 text-indigo-600 mb-3">
+                            <div class="p-2 bg-indigo-50 rounded-lg group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition transform duration-300">
+                                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition duration-300">Học Vấn Chính Quy</h3>
+                        </div>
+                        <div class="space-y-2 border-l-2 border-indigo-600 pl-4 text-left">
+                            <p class="font-bold text-slate-900 text-sm md:text-base">Trường Đại học Quản lý và Công nghệ TP.HCM (UMT)</p>
+                            <p class="text-indigo-600 font-medium text-xs">Niên khóa: 2025 - 2029</p>
+                            <p class="text-slate-700 text-xs font-medium">Chuyên ngành học: Công nghệ Thông tin (GPA 7.5)</p>
+                            <p class="text-xs text-slate-500 italic leading-relaxed">* Ứng dụng nền tảng CNTT để tối ưu hóa quản lý dữ liệu vận hành và hệ thống thông tin Logistics.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-violet-300 transition duration-300 group">
+                        <div class="flex items-center gap-3 text-violet-600 mb-3">
+                            <div class="p-2 bg-violet-50 rounded-lg group-hover:scale-110 group-hover:bg-violet-600 group-hover:text-white transition transform duration-300">
+                                <i data-lucide="users" class="w-5 h-5"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 group-hover:text-violet-600 transition duration-300">Hoạt Động Ngoại Khóa</h3>
+                        </div>
+                        <div class="space-y-2 border-l-2 border-violet-600 pl-4 text-left">
+                            <p class="font-bold text-slate-900 text-sm md:text-base">Câu lạc bộ UMC Marketing</p>
+                            <p class="text-violet-600 font-medium text-xs">Vai trò: Thành viên Ban điều hành & Quản lý nhân sự</p>
+                            <p class="text-slate-600 text-xs leading-relaxed">
+                                Chịu trách nhiệm phối hợp tổ chức nhân sự nội bộ, kết nối giao tiếp với các đối tác. Đây là nền tảng cốt lõi giúp rèn luyện tư duy <strong>hướng tới khách hàng (Customer-centric)</strong> và kỹ năng giải quyết khiếu nại áp lực cao.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SKILLS SECTION -->
+    <section id="skills" class="relative py-24 px-4 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 border-b border-slate-900 overflow-hidden scroll-mt-16">
+        <div class="absolute inset-0 bg-grid-pattern opacity-60 pointer-events-none"></div>
+        <div class="max-w-6xl mx-auto space-y-12 relative z-10">
+            <div class="text-center space-y-2">
+                <h2 class="text-3xl font-bold text-white">Năng Lực & Kỹ Năng Chuyên Môn</h2>
+                <p class="text-slate-400">Sự giao thoa giữa nghiệp vụ chuỗi cung ứng, nền tảng số hóa và kỹ năng tương tác khách hàng</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group bg-slate-900/60 backdrop-blur-md p-6 rounded-2xl border border-slate-800 shadow-xl hover:-translate-y-2 hover:border-indigo-500/50 hover:shadow-indigo-950/50 transition transform duration-300 flex flex-col justify-between">
+                    <div class="space-y-4 text-left">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-950 text-indigo-400 flex items-center justify-center border border-indigo-900 shadow-inner mx-auto md:mx-0 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition duration-300">
+                            <i data-lucide="truck" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white text-center md:text-left group-hover:text-indigo-400 transition duration-300">Nghiệp Vụ Logistics & CS</h3>
+                        <ul class="space-y-2.5 text-slate-400 text-sm">
+                            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2"></span> <span>Theo dõi đơn hàng (Order Tracking) & Kiểm soát tồn kho</span></li>
+                            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2"></span> <span>Quy trình phối hợp các bên (Carrier, Warehouse, Sales)</span></li>
+                            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2"></span> <span>Tư duy khai thác hệ thống dữ liệu SQL, ERP, WMS</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="group bg-slate-900/60 backdrop-blur-md p-6 rounded-2xl border border-slate-800 shadow-xl hover:-translate-y-2 hover:border-violet-500/50 hover:shadow-violet-950/50 transition transform duration-300 flex flex-col justify-between">
+                    <div class="space-y-4 text-left">
+                        <div class="w-12 h-12 rounded-xl bg-violet-950 text-violet-400 flex items-center justify-center border border-violet-900 shadow-inner mx-auto md:mx-0 group-hover:scale-110 group-hover:bg-violet-600 group-hover:text-white transition duration-300">
+                            <i data-lucide="languages" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white text-center md:text-left group-hover:text-violet-400 transition duration-300">Ngoại Ngữ & Chứng Từ</h3>
+                        <div class="bg-violet-950 text-violet-300 px-3 py-1 rounded-lg border border-violet-900 text-xs font-semibold inline-block group-hover:bg-violet-800 group-hover:text-white transition duration-300">Chứng chỉ: IELTS 6.0</div>
+                        <ul class="space-y-2.5 text-slate-400 text-sm">
+                            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-violet-400 mt-2"></span> <span>Giao tiếp và soạn thảo văn bản thương mại bằng Tiếng Anh</span></li>
+                            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-violet-400 mt-2"></span> <span>Thành thạo biểu mẫu chứng từ xuất nhập khẩu cốt lõi: <strong>B/L, Invoice, Packing List</strong>.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="group bg-slate-900/60 backdrop-blur-md p-6 rounded-2xl border border-slate-800 shadow-xl hover:-translate-y-2 hover:border-emerald-500/50 hover:shadow-emerald-950/50 transition transform duration-300 flex flex-col justify-between">
+                    <div class="space-y-4 text-left">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-950 text-emerald-400 flex items-center justify-center border border-emerald-900 shadow-inner mx-auto md:mx-0 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition duration-300">
+                            <i data-lucide="headset" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white text-center md:text-left group-hover:text-emerald-400 transition duration-300">Kỹ Năng Khách Hàng</h3>
+                        <ul class="space-y-2.5 text-slate-400 text-sm">
+                            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2"></span> <span><strong>Giải quyết xung đột & Xử lý khiếu nại chậm hàng</strong></span></li>
+                            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2"></span> <span><strong>Giao tiếp liên phòng ban (Interpersonal Skill)</strong></span></li>
+                            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2"></span> <span><strong>Lắng nghe tích cực & Phản hồi nhanh (SLA)</strong></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. PROJECTS SECTION -->
+    <section id="projects" class="relative py-24 bg-slate-100 text-slate-800 border-b border-slate-200/80 px-4 scroll-mt-16 overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern-dark opacity-40 pointer-events-none"></div>
+        <div class="max-w-6xl mx-auto space-y-12 relative z-10">
+            <div class="text-center space-y-2">
+                <h2 class="text-3xl font-bold text-slate-900">Dự Án Nghiên Cứu & Mô Hình Ứng Dụng</h2>
+                <p class="text-slate-500">Ứng dụng thế mạnh CNTT vào tối ưu hóa trải nghiệm khách hàng và luân chuyển thông tin chuỗi cung ứng</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                <div class="group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:border-indigo-400/50 transition duration-300">
+                    <div class="h-52 bg-slate-200 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-indigo-900/20 group-hover:bg-indigo-900/0 z-10 transition duration-300"></div>
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600" alt="Project 1" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition duration-300">Mô Hình Phân Bổ Vật Tư & Tự Động Hóa Biểu Mẫu Hub</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Ứng dụng tư duy cấu trúc dữ liệu để xây dựng logic tính toán, phân bổ số lượng và đơn giá vật tư tự động theo tỷ lệ cho các Hub trung chuyển lớn (HCM, Đà Nẵng, Nha Trang).</p>
+                        <div class="flex flex-wrap gap-2 text-xs font-medium pt-2">
+                            <span class="bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-md group-hover:bg-indigo-600 group-hover:text-white transition duration-300">Order Tracking Data</span>
+                            <span class="bg-violet-50 text-violet-700 px-2.5 py-1 rounded-md group-hover:bg-violet-600 group-hover:text-white transition duration-300">Excel & SQL Logic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:border-indigo-400/50 transition duration-300">
+                    <div class="h-52 bg-slate-200 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-indigo-900/20 group-hover:bg-indigo-900/0 z-10 transition duration-300"></div>
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600" alt="Project 2" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition duration-300">Hệ Thống Phân Tích Chi Phí Tạm Ứng & Phí Phát Sinh</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Xây dựng thuật toán và bảng tính logic quản lý hạn mức tạm ứng chi phí Logistics phát sinh (Detention/Demurrage, lưu kho bãi) kết hợp đối chiếu phụ cấp.</p>
+                        <div class="flex flex-wrap gap-2 text-xs font-medium pt-2">
+                            <span class="bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-md group-hover:bg-indigo-600 group-hover:text-white transition duration-300">Logistics Billing Logic</span>
+                            <span class="bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-md group-hover:bg-emerald-600 group-hover:text-white transition duration-300">Customer Transparency</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CONTACT SECTION -->
+    <section id="contact" class="relative py-24 bg-gradient-to-b from-slate-900 to-slate-950 px-4 scroll-mt-16 overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern opacity-50 pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto space-y-12 relative z-10">
+            <div class="text-center space-y-2">
+                <h2 class="text-3xl font-bold text-white">Kết Nối Với Tôi</h2>
+                <p class="text-slate-400">Thông tin liên hệ chính thức của Vương Phùng Gia Vỹ</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start text-left">
+                <div class="space-y-6 bg-slate-900/80 backdrop-blur-md border border-slate-800 p-8 rounded-2xl shadow-2xl hover:border-indigo-500/30 transition duration-300">
+                    <h3 class="text-xl font-bold text-white mb-4">Thông tin trực tiếp</h3>
+                    <div class="space-y-4 text-slate-300">
+                        <div class="flex items-start gap-3 hover:translate-x-1.5 transition transform duration-300 group">
+                            <div class="p-2 rounded-lg bg-indigo-950 text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition transform duration-300">
+                                <i data-lucide="mail" class="w-5 h-5 flex-shrink-0"></i>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-xs text-slate-500 font-semibold tracking-wider uppercase">Thư điện tử</span>
+                                <a href="mailto:vuonggiavy@gmail.com" class="hover:text-indigo-400 break-all transition font-medium text-sm md:text-base">vuonggiavy@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3 hover:translate-x-1.5 transition transform duration-300 group">
+                            <div class="p-2 rounded-lg bg-indigo-950 text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition transform duration-300">
+                                <i data-lucide="phone" class="w-5 h-5 flex-shrink-0"></i>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-xs text-slate-500 font-semibold tracking-wider uppercase">Điện thoại di động</span>
+                                <a href="tel:+84705982870" class="hover:text-indigo-400 transition font-medium text-sm md:text-base">+84 705 982 870</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 hover:translate-x-1.5 transition transform duration-300 group">
+                            <div class="p-2 rounded-lg bg-indigo-950 text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition transform duration-300">
+                                <i data-lucide="map-pin" class="w-5 h-5 flex-shrink-0"></i>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-xs text-slate-500 font-semibold tracking-wider uppercase">Địa chỉ / Khu vực</span>
+                                <span class="text-sm font-medium">Châu Thành, Đồng Tháp <br><span class="text-slate-500 text-xs font-normal">(Hiện đang học tập và tìm việc tại TP.HCM)</span></span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3 pt-4 border-t border-slate-800 group hover:translate-x-1.5 transition transform duration-300">
+                            <div class="p-2 rounded-lg bg-indigo-950 text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition transform duration-300">
+                                <i data-lucide="linkedin" class="w-5 h-5 flex-shrink-0"></i>
+                            </div>
+                            <div class="flex flex-col justify-center">
+                                <span class="text-xs text-slate-500 font-semibold tracking-wider uppercase">Mạng xã hội nghề nghiệp</span>
+                                <a href="https://www.linkedin.com/in/vy-v%C6%B0%C6%A1ng-77510a409" target="_blank" rel="noopener noreferrer" class="text-indigo-400 font-bold hover:underline inline-flex items-center gap-1 text-sm md:text-base">
+                                    LinkedIn Profile <i data-lucide="external-link" class="w-3 h-3"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="bg-slate-900/60 backdrop-blur-md p-8 rounded-2xl border border-slate-800 shadow-2xl space-y-4 hover:border-slate-700 transition duration-300" onsubmit="event.preventDefault(); alert('Cảm ơn nhà tuyển dụng đã gửi lời nhắn cho Vỹ!');">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1">Họ và tên người gửi</label>
+                        <input type="text" placeholder="Nguyễn Văn A" class="w-full px-4 py-2.5 border border-slate-800 rounded-xl text-sm focus:outline-none focus:border-indigo-500 bg-slate-950/80 text-white transition" required />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1">Email liên hệ</label>
+                        <input type="email" placeholder="name@company.com" class="w-full px-4 py-2.5 border border-slate-800 rounded-xl text-sm focus:outline-none focus:border-indigo-500 bg-slate-950/80 text-white transition" required />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1">Lời nhắn</label>
+                        <textarea rows="4" placeholder="Tôi muốn trao đổi về cơ hội thực tập..." class="w-full px-4 py-2.5 border border-slate-800 rounded-xl text-sm focus:outline-none focus:border-indigo-500 bg-slate-950/80 text-white resize-none transition" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-3 rounded-xl text-sm shadow-lg transition duration-200">
+                        Gửi lời nhắn tuyển dụng
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-600 py-8 border-t border-slate-900 text-center text-sm">
+        <p>&copy; 2026 Vương Phùng Gia Vỹ. Mọi quyền được bảo lưu.</p>
+    </footer>
+
+    <!-- Scripts Logic -->
+    <script>
+        window.addEventListener("DOMContentLoaded", function() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            // --- LOGIC HIỆU ỨNG CHẠY CHỮ MÀN HÌNH CHÀO MỪNG ---
+            const welcomeText = "WELCOME TO MY PORTFOLIO";
+            const welcomeTypingEl = document.getElementById("welcome-typing-text");
+            let welcomeIndex = 0;
+
+            function typeWelcome() {
+                if (welcomeIndex < welcomeText.length) {
+                    welcomeTypingEl.textContent += welcomeText.charAt(welcomeIndex);
+                    welcomeIndex++;
+                    setTimeout(typeWelcome, 60);
+                } else {
+                    setTimeout(() => {
+                        const loader = document.getElementById('welcome-loader');
+                        loader.classList.add('fade-out');
+                        
+                        // KHI WELCOME SCREEN TẮT -> KÍCH HOẠT HIỆU ỨNG RƠI & ĐUNG ĐƯA TỰ ĐỘNG CỦA THẺ
+                        triggerDropAndSwingEffect();
+                    }, 1000);
+                }
+            }
+            typeWelcome();
+
+
+            // --- LOGIC HIỆU ỨNG CHẠY CHỮ HERO SECTION ---
+            const words = ["Customer Service Logistics", "Data Analyst System", "Supply Chain Specialist"];
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const heroTypingEl = document.getElementById("hero-typing-text");
+
+            function typeHeroEffect() {
+                const currentWord = words[wordIndex];
+                if (isDeleting) {
+                    heroTypingEl.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    heroTypingEl.textContent = currentWord.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                let typeSpeed = isDeleting ? 40 : 80;
+
+                if (!isDeleting && charIndex === currentWord.length) {
+                    typeSpeed = 1800; 
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length; 
+                    typeSpeed = 400; 
+                }
+
+                setTimeout(typeHeroEffect, typeSpeed);
+            }
+            setTimeout(typeHeroEffect, 500);
+
+
+            // --- XỬ LÝ THẺ VẬT LÝ 3D & HIỆU ỨNG RƠI ĐUNG ĐƯA ---
+            const badge = document.getElementById('interactive-badge');
+            const clip = document.getElementById('badge-clip');
+            const stringPath = document.getElementById('badge-string');
+
+            const centerX = 400; // Tâm x của hệ tọa độ SVG mới (rộng 800)
+            let isDragging = false;
+            let startX = 0, startY = 0;
+            let currentX = 0, currentY = -700; // Bắt đầu ở trên cao ngoài tầm nhìn (để rơi xuống)
+            let vx = 0, vy = 0; 
+            let animationFrameId = null;
+            const spring = 0.055;  
+            const friction = 0.86; 
+
+            // Hàm kích hoạt hiệu ứng rơi tự do biến thiên động lượng (Swing Drop)
+            function triggerDropAndSwingEffect() {
+                currentX = 180;    // Lệch trục X mạnh sang phải để tạo lực quán tính đung đưa khi rơi
+                currentY = -450;   // Vị trí xuất phát từ trên cao khuất màn hình
+                vx = -25;          // Đẩy vận tốc âm hướng trái tạo đà lắc mạnh
+                vy = 35;           // Tốc độ rơi xuống nhanh
+                
+                if (animationFrameId) cancelAnimationFrame(animationFrameId);
+                animatePhysics();
+            }
+
+            function startDrag(e) {
+                isDragging = true;
+                if (animationFrameId) cancelAnimationFrame(animationFrameId);
+                
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                
+                startX = clientX - currentX;
+                startY = clientY - currentY;
+            }
+
+            function drag(e) {
+                if (!isDragging) return;
+                e.preventDefault();
+
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+                currentX = clientX - startX;
+                currentY = clientY - startY;
+
+                const maxDistance = 350; 
+                const distance = Math.sqrt(currentX * currentX + currentY * currentY);
+                if (distance > maxDistance) {
+                    const angle = Math.atan2(currentY, currentX);
+                    currentX = Math.cos(angle) * maxDistance;
+                    currentY = Math.sin(angle) * maxDistance;
+                }
+
+                updateBadgePosition();
+            }
+
+            function endDrag() {
+                if (!isDragging) return;
+                isDragging = false;
+                vx = 0; vy = 0;
+                animatePhysics();
+            }
+
+            function animatePhysics() {
+                if (isDragging) return;
+
+                // Lực đàn hồi kéo thẻ về điểm cân bằng (0,0) ban đầu
+                let ax = -currentX * spring;
+                let ay = -currentY * spring;
+
+                vx = (vx + ax) * friction;
+                vy = (vy + ay) * friction;
+
+                currentX += vx;
+                currentY += vy;
+
+                updateBadgePosition();
+
+                // Tiếp tục lặp nếu thẻ chưa đứng yên hoàn toàn
+                if (Math.abs(vx) > 0.01 || Math.abs(vy) > 0.01 || Math.abs(currentX) > 0.01 || Math.abs(currentY) > 0.01) {
+                    animationFrameId = requestAnimationFrame(animatePhysics);
+                } else {
+                    currentX = 0; currentY = 0;
+                    updateBadgePosition();
+                }
+            }
+
+            function updateBadgePosition() {
+                const rotateY = currentX * 0.14;  
+                const rotateX = -currentY * 0.09; 
+                const rotateZ = currentX * 0.18;  
+
+                badge.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
+                clip.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+
+                // Cập nhật đường cong dẻo của sợi dây dựa trên neo gốc x=400, y=0 (Đỉnh màn hình thiết bị)
+                const targetX = centerX + currentX;
+                const targetY = 700 + currentY;
+                const controlX = centerX + (currentX * 0.4);
+                const controlY = 400 + (currentY * 0.3);
+
+                stringPath.setAttribute('d', `M ${centerX} 0 Q ${controlX} ${controlY} ${targetX} ${targetY}`);
+            }
+
+            badge.addEventListener('mousedown', startDrag);
+            window.addEventListener('mousemove', drag);
+            window.addEventListener('mouseup', endDrag);
+
+            badge.addEventListener('touchstart', startDrag, { passive: false });
+            window.addEventListener('touchmove', drag, { passive: false });
+            window.addEventListener('touchend', endDrag);
+            
+            // Khởi tạo trạng thái treo ẩn ban đầu trước khi rơi
+            updateBadgePosition();
+        });
+
+        window.addEventListener("scroll", function() {
+            const navbar = document.getElementById("navbar");
+            if (window.scrollY > 50) {
+                navbar.classList.remove("bg-slate-950/80", "py-4");
+                navbar.classList.add("bg-slate-950", "shadow-xl", "py-3");
+            } else {
+                navbar.classList.remove("bg-slate-950", "shadow-xl", "py-3");
+                navbar.classList.add("bg-slate-950/80", "py-4");
+            }
+        });
+    </script>
+</body>
+</html>
